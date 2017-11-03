@@ -28,7 +28,7 @@ We'll visit the [Developer Center](https://dev.ingest.io) and create an applicat
 
 Once you've loaded the Developer Center, click "Get Started" to create an application. If you aren't logged in, you'll be prompted to login with your Ingest account.
 
-Once you've created an application, go to the applications settings page by hitting the gear icon, or the title, and navigate to the Permissions tab, giving this application the following permissions: 
+Once you've created an application, go to the applications settings page by hitting the gear icon, or the title, and navigate to the Permissions tab, giving this application the following permissions:
 * `read_live`
 * `write_live`
 * `personal`
@@ -45,7 +45,7 @@ Then, proceed to the Access Tokens tab, and create a personal access token, and 
 
 ## Make the request
 
-Now that we're authenticated, we can make the request from your terminal, or using a tool like Postman. Make sure to replace the `{{token}}` placeholder with the access token you copied from above. 
+Now that we're authenticated, we can make the request from your terminal, or using a tool like Postman. Make sure to replace the `{{token}}` placeholder with the access token you copied from above.
 
 ```
 curl --request POST \
@@ -65,12 +65,13 @@ Once you've sent this request, you'll receive a JSON response that looks somethi
     "stream_key": "i0qMxZrn3Y",
     "title": "Creating a livestream",
     "network_id": "7892184f-4613-44fb-9ae3-8ed726dedc3d",
-    "rtmp_url": null,
-    "play_url": null,
-    "status": "CREATED",
+    "rtmp_url": "rtmp://live.ingest.io/origin/i0qMxZrn3Y",
+    "play_url": "https://stream.ingest.io/f179201b-6e58-4985-bd2d-cf3c42154054/master.m3u8",
+    "status": "IDLE",
     "created_at": "2017-09-21T21:13:07.515117Z",
     "finished_at": null,
-    "deleted_at": null
+    "deleted_at": null,
+    "modified_at": null
 }
 ```
 
@@ -78,35 +79,8 @@ You should copy the stream_key from the response, and input this back in the `Se
 
 ![Stream Settings](./images/settings-stream.png)
 
-Then we will send a subsequent GET request to the location identified in the `"url"` field and in a few seconds the `"status"` field will change to `"RUNNING"` and the `"play_url"` will be populated, which is where you can point a HLS player to watch your livestream!
+The `play_url` field is the URL you can point a HLS player to watch your livestream!
 
-Again, replace the `{{url}}` and `{{token}}` placeholders.
-
-```
-curl --request GET \
-  --url {{url}} \
-  --header 'accept: application/vnd.ingest.v1+json' \
-  --header 'authorization: Bearer {{token}}' \
-  --header 'content-type: application/json'
-```
-
-You'll receive another JSON object response assuming everything went well that looks like this.
-
-```
-{
-	"id": "f179201b-6e58-4985-bd2d-cf3c42154054",
-	"url": "https://api.ingest.io/live/f179201b-6e58-4985-bd2d-cf3c42154054",
-	"stream_key": "i0qMxZrn3Y",
-	"title": "Creating a livestream",
-	"network_id": "7892184f-4613-44fb-9ae3-8ed726dedc3d",
-	"rtmp_url": "rtmp://live.ingest.io/origin/i0qMxZrn3Y",
-	"play_url": "https://stream.ingest.io/f179201b-6e58-4985-bd2d-cf3c42154054/master.m3u8",
-	"status": "RUNNING",
-	"created_at": "2017-09-21T21:13:07.515117Z",
-	"finished_at": null,
-	"deleted_at": null
-}
-```
 
 ## Go live!
 
