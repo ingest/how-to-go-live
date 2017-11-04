@@ -24,7 +24,7 @@ We'll come back to this to set the stream key once we've created our livestream 
 
 > _Note: We will do this using the API to demonstrate how easy it is to setup an application, and start to use our API, but you can also do this process via our [Dashboard](https://dashboard.ingest.io) in the livestreaming section and skip this step._
 
-We'll visit the [Developer Center](https://dev.ingest.io) and create an application so we can get a authorization token to call the API on your behalf.
+We'll visit the [Developer Center](https://developers.ingest.io) and create an application so we can get a authorization token to call the API on your behalf.
 
 Once you've loaded the Developer Center, click "Get Started" to create an application. If you aren't logged in, you'll be prompted to login with your Ingest account.
 
